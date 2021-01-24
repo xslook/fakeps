@@ -6,7 +6,7 @@ softwares to make sure everything ***is safe***. But on your personal computer, 
 and stains your room.
 
 
-**WARN**: Use is at your own risk.
+**WARN**: Use this is at your own risk.
 
 
 ### Usage
@@ -39,7 +39,8 @@ make build
 
 
 ### TODO
-- [] Support windows
+
+- [ ] Support windows
 
 
 ### LICENSE
