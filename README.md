@@ -13,7 +13,7 @@ and stains your room.
 1. Download this program from release page or download it like below:
 
   ```sh
-  go get github.com/xslook/foolany/cmd/
+  go get github.com/xslook/foolany/cmd/foolany/
   ```
 
 2. Run program to simulate target processes (for example, you need mse.exe and other.exe to pass Anyconnect's check)
