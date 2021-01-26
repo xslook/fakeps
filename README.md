@@ -1,5 +1,5 @@
-# Foolany
-Foolany is a simple program to simulate some named processes.
+# Fakeps
+Fakeps is a simple program to simulate some named processes.
 
 While some companies use **Ciso Anyconnect** as VPN service, they may want you install some
 softwares to make sure everything ***is safe***. But on your personal computer, it's annoying
@@ -13,13 +13,13 @@ and stains your room.
 1. Download this program from release page or download it like below:
 
   ```sh
-  go get github.com/xslook/foolany/cmd/foolany/
+  go get github.com/xslook/fakeps/cmd/fakeps/
   ```
 
 2. Run program to simulate target processes (for example, you need mse.exe and other.exe to pass Anyconnect's check)
 
   ```sh
-  foolany -p mse.exe,other.exe -t 60
+  fakeps -p mse.exe,other.exe -t 60
   ```
   It will run 60 seconds and startup two processes (mse.exe and other.exe) until program exit.
 
@@ -29,7 +29,7 @@ You can download source and build executable yourself.
 
 First, clone it.
 ```sh
-git clone https://github.com/xslook/foolany
+git clone https://github.com/xslook/fakeps
 ```
 
 then, build it with **make**:

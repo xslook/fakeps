@@ -1,3 +1,3 @@
-module github.com/xslook/foolany
+module github.com/xslook/fakeps
 
 go 1.15

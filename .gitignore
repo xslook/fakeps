@@ -1,4 +1,4 @@
-foolany
-foolany_*
+fakeps
+fakeps_*
 build/
-!cmd/foolany
+!cmd/fakeps

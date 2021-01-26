@@ -9,7 +9,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/xslook/foolany"
+	"github.com/xslook/fakeps"
 )
 
 var (
@@ -23,7 +23,7 @@ func init() {
 }
 
 func run(ctx context.Context, name string) {
-	err := foolany.Run(ctx, name)
+	err := fakeps.Run(ctx, name)
 	if err != nil {
 		if errors.Is(err, context.Canceled) || errors.Is(err, context.DeadlineExceeded) {
 			return

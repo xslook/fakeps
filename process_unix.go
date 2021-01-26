@@ -1,6 +1,6 @@
 //+build linux darwin
 
-package foolany
+package fakeps
 
 import (
 	"context"
@@ -41,7 +41,7 @@ func copyExecutable(source, name string) (string, error) {
 
 const timeout = 1 << 30
 
-// Run name process
+// Run named process
 func Run(ctx context.Context, name string) error {
 	exe, err := copyExecutable(realProgram, name)
 	if err != nil {

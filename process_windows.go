@@ -1,10 +1,10 @@
 //+build windows
 
-package foolany
+package fakeps
 
 import "context"
 
-// Run name process
+// Run named process
 func Run(ctx context.Context, name string) error {
 	return nil
 }

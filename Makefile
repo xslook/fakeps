@@ -1,7 +1,7 @@
 
 .PHONY: build
 build:
-	go build cmd/foolany/foolany.go
+	go build cmd/fakeps/fakeps.go
 
 
 .PHONY: build-all
@@ -13,32 +13,32 @@ build-win: build-win64 build-win32
 
 .PHONY: build-win32
 build-win32:
-	GOOS=windows GOARCH=amd64 go build -o foolany_32.exe cmd/foolany/foolany.go
+	GOOS=windows GOARCH=amd64 go build -o fakeps_32.exe cmd/fakeps/fakeps.go
 
 .PHONY: build-win64
 build-win64:
-	GOOS=windows GOARCH=amd64 go build -o foolany_64.exe cmd/foolany/foolany.go
+	GOOS=windows GOARCH=amd64 go build -o fakeps_64.exe cmd/fakeps/fakeps.go
 
 .PHONY: build-mac
 build-mac:
-	GOOS=darwin GOARCH=amd64 go build -o foolany_mac cmd/foolany/foolany.go
+	GOOS=darwin GOARCH=amd64 go build -o fakeps_mac cmd/fakeps/fakeps.go
 
 .PHONY: build-linux
 build-linux:
-	GOOS=linux GOARCH=amd64 go build -o foolany_linux cmd/foolany/foolany.go
+	GOOS=linux GOARCH=amd64 go build -o fakeps_linux cmd/fakeps/fakeps.go
 
 
 .PHONY: worker
 worker:
 	-mkdir -p build
 	GOOS=linux GOARCH=amd64 go build -o build/worker_linux cmd/worker/worker.go
-	GOOS=darwin GOARCH=amd64 go build -o build/foolany_mac cmd/worker/worker.go
-	GOOS=windows GOARCH=amd64 go build -o build/foolany_64.exe cmd/worker/worker.go
-	GOOS=windows GOARCH=amd64 go build -o build/foolany_32.exe cmd/worker/worker.go
+	GOOS=darwin GOARCH=amd64 go build -o build/fakeps_mac cmd/worker/worker.go
+	GOOS=windows GOARCH=amd64 go build -o build/fakeps_64.exe cmd/worker/worker.go
+	GOOS=windows GOARCH=amd64 go build -o build/fakeps_32.exe cmd/worker/worker.go
 
 
 .PHONY: clean
 clean:
 	-rm -rf build/
-	-rm -f foolany foolany_*
+	-rm -f fakeps fakeps_*
 
