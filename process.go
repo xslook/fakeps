@@ -1,5 +1,3 @@
-//+build linux darwin
-
 package fakeps
 
 import (
@@ -11,7 +9,6 @@ import (
 	"os/exec"
 	"path/filepath"
 	"runtime"
-	"syscall"
 )
 
 //go:embed build
@@ -70,6 +67,5 @@ func Run(ctx context.Context, name string) error {
 		return err
 	}
 	cmd := exec.CommandContext(ctx, exe)
-	cmd.SysProcAttr = &syscall.SysProcAttr{Setpgid: true}
 	return cmd.Run()
 }
