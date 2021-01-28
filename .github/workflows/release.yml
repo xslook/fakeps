@@ -27,9 +27,6 @@ jobs:
             ${{ runner.os }}-go-
       - uses: actions/checkout@v2
 
-      - name: Get dependencies
-        run: go get
-
       - name: Build
         run: make
 
