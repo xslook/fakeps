@@ -3,6 +3,9 @@ package main
 import (
 	"context"
 	"flag"
+	"os"
+	"os/signal"
+	"syscall"
 	"time"
 )
 
@@ -27,11 +30,14 @@ func main() {
 	ctx, cancel := context.WithTimeout(context.Background(), td)
 	defer cancel()
 
+	sgch := make(chan os.Signal, 1)
+	signal.Notify(sgch, os.Kill, os.Interrupt, syscall.SIGTERM)
 	for {
 		select {
 		case <-ctx.Done():
 			return
+		case <-sgch:
+			return
 		}
 	}
-
 }

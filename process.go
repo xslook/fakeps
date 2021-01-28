@@ -4,22 +4,21 @@ package fakeps
 
 import (
 	"context"
+	"embed"
+	"fmt"
 	"io"
 	"os"
 	"os/exec"
 	"path/filepath"
-	"strconv"
+	"runtime"
 	"syscall"
 )
 
-const realProgram = "sleep"
+//go:embed build
+var fs embed.FS
 
 func copyExecutable(source, name string) (string, error) {
-	rp, err := exec.LookPath(realProgram)
-	if err != nil {
-		return "", err
-	}
-	src, err := os.Open(rp)
+	src, err := fs.Open(source)
 	if err != nil {
 		return "", err
 	}
@@ -39,17 +38,38 @@ func copyExecutable(source, name string) (string, error) {
 	return targetFile, nil
 }
 
-const timeout = 1 << 30
+func targetFile() (target string) {
+	switch runtime.GOOS {
+	case "linux":
+		if runtime.GOARCH == "amd64" {
+			target = "build/worker_linux64"
+		} else {
+			target = "build/worker_linux32"
+		}
+	case "windows":
+		if runtime.GOARCH == "amd64" {
+			target = "build/worker_win64"
+		} else {
+			target = "build/worker_win32"
+		}
+	case "darwin":
+		target = "build/worker_darwin"
+	default:
+	}
+	return
+}
 
 // Run named process
 func Run(ctx context.Context, name string) error {
-	exe, err := copyExecutable(realProgram, name)
+	target := targetFile()
+	if target == "" {
+		return fmt.Errorf("Platform did not support yet")
+	}
+	exe, err := copyExecutable(target, name)
 	if err != nil {
 		return err
 	}
-
-	arg := strconv.Itoa(timeout)
-	cmd := exec.CommandContext(ctx, exe, arg)
+	cmd := exec.CommandContext(ctx, exe)
 	cmd.SysProcAttr = &syscall.SysProcAttr{Setpgid: true}
 	return cmd.Run()
 }
