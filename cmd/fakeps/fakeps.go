@@ -19,7 +19,7 @@ var (
 
 func init() {
 	flag.StringVar(&programs, "p", "", "The names of programs that will be faked, divided by comma, such as mse.exe,kb.exe")
-	flag.IntVar(&timeout, "t", 60, "The running time (second), 0 means running until terminate manually")
+	flag.IntVar(&timeout, "t", 0, "The running time (seconds), 0 means running until terminate manually")
 }
 
 func run(ctx context.Context, name string) {
