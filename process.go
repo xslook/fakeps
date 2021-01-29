@@ -3,12 +3,10 @@ package fakeps
 import (
 	"context"
 	"embed"
-	"fmt"
 	"io"
 	"os"
 	"os/exec"
 	"path/filepath"
-	"runtime"
 )
 
 //go:embed build
@@ -35,34 +33,9 @@ func copyExecutable(source, name string) (string, error) {
 	return targetFile, nil
 }
 
-func targetFile() (target string) {
-	switch runtime.GOOS {
-	case "linux":
-		if runtime.GOARCH == "amd64" {
-			target = "build/worker_linux64"
-		} else {
-			target = "build/worker_linux32"
-		}
-	case "windows":
-		if runtime.GOARCH == "amd64" {
-			target = "build/worker_win64"
-		} else {
-			target = "build/worker_win32"
-		}
-	case "darwin":
-		target = "build/worker_darwin"
-	default:
-	}
-	return
-}
-
 // Run named process
-func Run(ctx context.Context, name string) error {
-	target := targetFile()
-	if target == "" {
-		return fmt.Errorf("Platform did not support yet")
-	}
-	exe, err := copyExecutable(target, name)
+func Run(ctx context.Context, name, worker string) error {
+	exe, err := copyExecutable(worker, name)
 	if err != nil {
 		return err
 	}

@@ -22,8 +22,10 @@ func init() {
 	flag.IntVar(&timeout, "t", 0, "The running time (seconds), 0 means running until terminate manually")
 }
 
+const workerPath = "build/worker"
+
 func run(ctx context.Context, name string) {
-	err := fakeps.Run(ctx, name)
+	err := fakeps.Run(ctx, name, workerPath)
 	if err != nil {
 		if errors.Is(err, context.Canceled) || errors.Is(err, context.DeadlineExceeded) {
 			return
