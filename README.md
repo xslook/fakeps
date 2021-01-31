@@ -1,22 +1,10 @@
 # Fakeps
 Fakeps is a simple program to simulate some named processes.
 
-While some companies use **Ciso Anyconnect** as VPN service, they may want you install some
-softwares to make sure everything ***is safe***. But on your personal computer, it's annoying
-and stains your room.
-
-
-**WARN**: Use this is at your own risk.
-
 
 ### Usage
-1. Download this program from release page or download it like below:
-
-  ```sh
-  go get github.com/xslook/fakeps/cmd/fakeps/
-  ```
-
-2. Run program to simulate target processes (for example, you need mse.exe and other.exe to pass Anyconnect's check)
+1. Download this program from [release](https://github.com/xslook/fakeps/releases/latest) page and unzip it.
+2. Run program to simulate target processes (for example, mse.exe and other.exe)
 
   ```sh
   fakeps -p mse.exe,other.exe -t 60
@@ -34,13 +22,8 @@ git clone https://github.com/xslook/fakeps
 
 then, build it with **make**:
 ```sh
-make build
+make
 ```
-
-
-### TODO
-
-- [ ] Support windows
 
 
 ### LICENSE
