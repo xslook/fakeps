@@ -2,18 +2,14 @@ package fakeps
 
 import (
 	"context"
-	"embed"
 	"io"
 	"os"
 	"os/exec"
 	"path/filepath"
 )
 
-//go:embed build
-var fs embed.FS
-
 func copyExecutable(source, name string) (string, error) {
-	src, err := fs.Open(source)
+	src, err := os.Open(source)
 	if err != nil {
 		return "", err
 	}
@@ -39,6 +35,6 @@ func Run(ctx context.Context, name, worker string) error {
 	if err != nil {
 		return err
 	}
-	cmd := exec.CommandContext(ctx, exe)
+	cmd := exec.CommandContext(ctx, exe, "-d")
 	return cmd.Run()
 }
