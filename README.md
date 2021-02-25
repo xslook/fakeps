@@ -15,7 +15,7 @@ Fakeps is a simple program to simulate some named processes.
 ### Install from source
 If you have **golang** installed, then just `go get` it.
 ```sh
-go get https://github.com/xslook/fakeps
+go get github.com/xslook/fakeps
 ```
 
 
