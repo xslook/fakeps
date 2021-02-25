@@ -1,4 +1,4 @@
-package fakeps
+package main
 
 import (
 	"context"

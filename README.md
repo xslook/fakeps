@@ -12,17 +12,10 @@ Fakeps is a simple program to simulate some named processes.
   It will run 60 seconds and startup two processes (mse.exe and other.exe) until program exit.
 
 
-### Build
-You can download source and build executable yourself.
-
-First, clone it.
+### Install from source
+If you have **golang** installed, then just `go get` it.
 ```sh
-git clone https://github.com/xslook/fakeps
-```
-
-then, build it with **make**:
-```sh
-make
+go get https://github.com/xslook/fakeps
 ```
 
 

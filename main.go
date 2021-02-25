@@ -9,8 +9,6 @@ import (
 	"strings"
 	"sync"
 	"time"
-
-	"github.com/xslook/fakeps"
 )
 
 var (
@@ -30,7 +28,7 @@ func run(ctx context.Context, name string) {
 	if err != nil {
 		panic(err)
 	}
-	err = fakeps.Run(ctx, name, exe)
+	err = Run(ctx, name, exe)
 	if err != nil {
 		if errors.Is(err, context.Canceled) || errors.Is(err, context.DeadlineExceeded) {
 			return
@@ -61,10 +59,12 @@ func runPrograms(ctx context.Context, ps []string) {
 const maxTimeout = 1 << 30
 
 func runDaemon(ctx context.Context) {
+	ticker := time.NewTicker(3 * time.Second)
 	for {
 		select {
 		case <-ctx.Done():
 			return
+		case <-ticker.C:
 		}
 	}
 }
